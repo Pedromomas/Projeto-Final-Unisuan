@@ -27,3 +27,6 @@ npm install --force
 ## Observações
 - `environment.ts` contém placeholders. Substitua pelos valores do seu Firebase Console.
 - Este projeto usa as versões compatíveis com Angular 20 e @angular/fire compat layer.
+
+- Para baixar o Apk siga essa linha aqui
+-viva-fit-main\android\app\build\outputs\apk\debug
