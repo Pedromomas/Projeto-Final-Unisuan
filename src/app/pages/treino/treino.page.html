@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/imc"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Plano Sugerido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <div class="ion-text-center ion-margin-bottom">
+    <ion-text color="dark">
+      <h1>Categoria: {{ categoria | titlecase }}</h1>
+      <p>Veja a recomendação ideal para você:</p>
+    </ion-text>
+  </div>
+
+  <ion-list lines="full">
+    <ion-item *ngFor="let item of treino">
+      <ion-icon name="fitness-outline" slot="start" color="primary"></ion-icon>
+      <ion-label class="ion-text-wrap">{{ item }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="secondary" routerLink="/welcome" class="ion-margin-top">
+    Voltar ao Início
+  </ion-button>
+
+</ion-content>

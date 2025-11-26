@@ -1,0 +1,32 @@
+{
+  "name": "vivafit",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "ionic serve"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "18.0.0",
+    "@angular/cli": "18.0.0",
+    "@angular/compiler": "18.0.0",
+    "@angular/compiler-cli": "18.0.0",
+    "@capacitor/cli": "^7.4.4",
+    "@types/node": "24.10.1",
+    "typescript": "5.4.5"
+  },
+  "dependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "@angular/platform-browser-dynamic": "^18.0.0",
+    "@angular/router": "^18.0.0",
+    "@capacitor/android": "^7.4.4",
+    "@ionic/angular": "^8.0.0",
+    "@types/jasmine": "^5.1.13",
+    "ionicons": "^8.0.13",
+    "jspdf": "^3.0.4",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.8.1",
+    "zone.js": "^0.14.4"
+  }
+}

@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>VIVAFIT - Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="home-container">
+    <ion-card color="light">
+      <ion-card-header>
+        <ion-card-title color="dark">Bem-vindo(a)!</ion-card-title>
+        <ion-card-subtitle color="medium">Controle seu progresso físico e nutricional</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Acesse rapidamente as ferramentas do Viva Fit:</p>
+        
+        <ion-grid class="ion-margin-top">
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="block" color="secondary" routerLink="/imc">
+                <ion-icon name="calculator" slot="start"></ion-icon>
+                IMC
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" color="primary" routerLink="/treino">
+                <ion-icon name="barbell" slot="start"></ion-icon>
+                Treino
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button expand="block" fill="outline" color="tertiary" routerLink="/dieta">
+                <ion-icon name="nutrition" slot="start"></ion-icon>
+                Dicas de Saúde
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        
+        <ion-item class="ion-margin-top" lines="none" routerLink="/perfil">
+            <ion-icon name="person-circle-outline" slot="start" color="dark"></ion-icon>
+            <ion-label>Gerenciar Perfil (Autenticação)</ion-label>
+            <ion-icon name="arrow-forward-outline" slot="end" color="medium"></ion-icon>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

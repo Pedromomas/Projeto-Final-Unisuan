@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dicas de Saúde</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="downloadPdf()" color="secondary">
+        <ion-icon name="download-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <ion-text color="dark">
+    <h1>Hábitos Saudáveis</h1>
+    <p>Dicas de nutrição e bem-estar para complementar seu treino.</p>
+  </ion-text>
+
+  <ion-list lines="none">
+    <ion-card *ngFor="let dica of dicas" color="light" class="ion-margin-vertical">
+      <ion-card-content class="dica-content">
+        <div class="icon-circle">
+          <ion-icon [name]="dica.icone + '-outline'" color="secondary"></ion-icon>
+        </div>
+        <div class="text-area">
+          <ion-text color="primary">
+            <h3>{{ dica.nome }}</h3>
+          </ion-text>
+          <ion-text color="dark">
+            <p>{{ dica.subtitulo }}</p>
+          </ion-text>
+          
+          <ul class="ion-margin-top">
+            <li *ngFor="let detalhe of dica.detalhes">{{ detalhe }}</li>
+          </ul>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
