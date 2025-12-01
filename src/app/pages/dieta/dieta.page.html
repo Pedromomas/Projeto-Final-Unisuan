@@ -1,0 +1,160 @@
+<ion-content [fullscreen]="true" [class.bg-lixo]="etapa === 'lixo'" style="--padding-bottom: 80px;">
+  
+  <!-- === TELA 1: QUESTIONÁRIO RÁPIDO (CONFIG) === -->
+  <div class="container-config" *ngIf="etapa === 'config'">
+    <div class="header-question">
+      <h1>Monte o seu Prato 🍽️</h1>
+      <p>Baseado no seu biótipo: <b>{{ biotipo }}</b></p>
+    </div>
+
+    <!-- 1. Café da Manhã -->
+    <div class="question-group">
+      <h3>1. Café da Manhã</h3>
+      <div class="chips-grid">
+        <div class="chip-item" [class.selected]="preferencias.cafe === 'ovos'" (click)="selecionarOpcao('cafe', 'ovos')"><span>🍳</span> Ovos</div>
+        <div class="chip-item" [class.selected]="preferencias.cafe === 'panqueca'" (click)="selecionarOpcao('cafe', 'panqueca')"><span>🥞</span> Panqueca</div>
+        <div class="chip-item" [class.selected]="preferencias.cafe === 'mingau'" (click)="selecionarOpcao('cafe', 'mingau')"><span>🥣</span> Mingau</div>
+        <div class="chip-item" [class.selected]="preferencias.cafe === 'fruta'" (click)="selecionarOpcao('cafe', 'fruta')"><span>🍎</span> Frutas</div>
+      </div>
+    </div>
+
+    <!-- 2. Proteína -->
+    <div class="question-group">
+      <h3>2. Proteína Principal</h3>
+      <div class="chips-grid">
+        <div class="chip-item" [class.selected]="preferencias.proteina === 'frango'" (click)="selecionarOpcao('proteina', 'frango')"><span>🐔</span> Frango</div>
+        <div class="chip-item" [class.selected]="preferencias.proteina === 'carne'" (click)="selecionarOpcao('proteina', 'carne')"><span>🥩</span> Carne</div>
+        <div class="chip-item" [class.selected]="preferencias.proteina === 'ovo'" (click)="selecionarOpcao('proteina', 'ovo')"><span>🥚</span> Ovos</div>
+        <div class="chip-item" [class.selected]="preferencias.proteina === 'peixe'" (click)="selecionarOpcao('proteina', 'peixe')"><span>🐟</span> Peixe</div>
+      </div>
+    </div>
+
+    <!-- 3. Carboidrato -->
+    <div class="question-group">
+      <h3>3. Carboidrato</h3>
+      <div class="chips-grid">
+        <div class="chip-item" [class.selected]="preferencias.carbo === 'arroz'" (click)="selecionarOpcao('carbo', 'arroz')"><span>🍚</span> Arroz</div>
+        <div class="chip-item" [class.selected]="preferencias.carbo === 'batata'" (click)="selecionarOpcao('carbo', 'batata')"><span>🥔</span> Batata</div>
+        <div class="chip-item" [class.selected]="preferencias.carbo === 'macarrao'" (click)="selecionarOpcao('carbo', 'macarrao')"><span>🍝</span> Massa</div>
+        <div class="chip-item" [class.selected]="preferencias.carbo === 'pao'" (click)="selecionarOpcao('carbo', 'pao')"><span>🍞</span> Pão</div>
+      </div>
+    </div>
+
+    <!-- 4. Extras -->
+    <div class="question-group">
+      <h3>4. Extras</h3>
+      <ion-item lines="none" class="toggle-item"><ion-label>🥗 Incluir Salada?</ion-label><ion-checkbox slot="end" [(ngModel)]="preferencias.vegetais" (ionChange)="calcularSimulacao()"></ion-checkbox></ion-item>
+      <ion-item lines="none" class="toggle-item"><ion-label>🍫 Sobremesa Fit?</ion-label><ion-checkbox slot="end" [(ngModel)]="preferencias.doce" (ionChange)="calcularSimulacao()"></ion-checkbox></ion-item>
+    </div>
+
+    <ion-button expand="block" shape="round" color="success" class="btn-gerar" (click)="gerarCardapio()">
+      GERAR O MEU CARDÁPIO
+    </ion-button>
+  </div>
+
+
+  <!-- === TELA 2: A DIETA DO DIA (HOJE) === -->
+  <div class="container-dieta" *ngIf="etapa === 'hoje'">
+    
+    <!-- HEADER COM GRÁFICO DE PIZZA -->
+    <div class="stats-header-pizza">
+      <!-- O estilo do background (o gráfico) vem do TS -->
+      <div class="pizza-chart" [style.background]="graficoPizzaStyle">
+        <div class="chart-center">
+          <h2>{{ caloriasConsumidas }}</h2>
+          <span>kcal</span>
+        </div>
+      </div>
+      
+      <div class="chart-details">
+        <p class="meta-label">Meta: <b>{{ metaCalorias }}</b> kcal</p>
+        <div class="macro-row">
+          <div class="macro-item">
+            <ion-icon name="flame" color="warning"></ion-icon> 
+            <span>{{ proteinasConsumidas }}g Prot</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions-row">
+      <ion-button fill="outline" size="small" (click)="mudarOpcoes()">🔄 Trocar Opções</ion-button>
+      <ion-button fill="solid" color="danger" size="small" (click)="ativarDiaDoLixo()">🍕 Dia do Lixo</ion-button>
+    </div>
+
+    <!-- LISTA DE REFEIÇÕES -->
+    <div class="meals-list">
+      <ion-card *ngFor="let ref of cardapioDoDia">
+        <ion-card-content>
+          <div class="meal-title">
+            <ion-icon [name]="ref.icone"></ion-icon> 
+            <b>{{ ref.nome }}</b>
+            <span class="time">{{ ref.horario }}</span>
+          </div>
+          
+          <div class="meal-options">
+            <ion-item lines="none" *ngFor="let op of ref.opcoes">
+              <ion-checkbox slot="start" [(ngModel)]="op.checked" (ionChange)="atualizarCalorias()"></ion-checkbox>
+              <ion-label class="ion-text-wrap">
+                <h3 style="font-weight: 700; margin-bottom: 2px;">{{ op.item }}</h3>
+                <p style="display: flex; justify-content: space-between; align-items: center;">
+                  <!-- Exibe as gramas calculadas no TS -->
+                  <ion-badge color="light" style="color: #666; font-weight: normal; font-size: 11px;">{{ op.gramas }}</ion-badge>
+                  <span style="font-weight: 600; color: #222;">{{ op.cal }} kcal</span>
+                </p>
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+
+  <!-- === TELA 3: DIA DO LIXO (INTERATIVA) === -->
+  <div class="container-lixo" *ngIf="etapa === 'lixo'">
+    <div class="lixo-content">
+      <div class="giant-icon">🍕</div>
+      <h1>MODO LIVRE ATIVO!</h1>
+      <p>Hoje as calorias não contam. Aproveite para comer o que gosta, mas com moderação!</p>
+      
+      <div class="fun-cards">
+        <div class="fun-item">🍔 Hambúrguer</div>
+        <div class="fun-item">🍫 Chocolate</div>
+        <div class="fun-item">🍺 Bebida</div>
+      </div>
+
+      <ion-button expand="block" color="light" shape="round" class="btn-voltar" (click)="voltarParaDieta()">
+        VOLTAR AO FOCO 💪
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>
+
+<!-- MENU INFERIOR FIXO -->
+<div class="bottom-tab-bar">
+  <!-- 1. Home -->
+  <div class="tab-item" routerLink="/home">
+    <ion-icon name="grid"></ion-icon>
+    <span>Home</span>
+  </div>
+
+  <!-- 2. Evolução -->
+  <div class="tab-item" routerLink="/evolucao">
+    <ion-icon name="stats-chart"></ion-icon>
+    <span>Evolução</span>
+  </div>
+
+  <!-- 3. Dieta (ATIVO AQUI) -->
+  <div class="tab-item active">
+    <ion-icon name="nutrition"></ion-icon>
+    <span>Dieta</span>
+  </div>
+
+  <!-- 4. Perfil -->
+  <div class="tab-item" routerLink="/perfil">
+    <ion-icon name="person"></ion-icon>
+    <span>Perfil</span>
+  </div>
+</div>

@@ -1,0 +1,170 @@
+/* --- QUESTIONÁRIO --- */
+.container-config {
+  padding: 20px;
+  padding-bottom: 100px;
+  background: white; min-height: 100%;
+}
+
+.header-question {
+  text-align: center; margin-bottom: 30px;
+  h1 { font-size: 24px; font-weight: 800; color: #222; }
+  p { color: #666; }
+}
+
+.question-box {
+  margin-bottom: 25px;
+  h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: #444; }
+}
+
+.chips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colunas */
+  gap: 10px;
+}
+
+.chip-item {
+  background: #f8f9fa;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  font-weight: 600; color: #555;
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  span { display: block; font-size: 24px; margin-bottom: 5px; }
+
+  &.selected {
+    border-color: var(--ion-color-success);
+    background: #e8f5e9;
+    color: var(--ion-color-success-shade);
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(45, 211, 111, 0.2);
+  }
+}
+
+/* GRUPOS DE PERGUNTAS */
+.question-group {
+  margin-bottom: 30px;
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+.toggle-item {
+  --background: #f8f9fa;
+  border-radius: 12px; margin-bottom: 10px;
+  border: 1px solid #eee;
+}
+
+.btn-gerar { margin-top: 40px; height: 50px; --box-shadow: 0 5px 15px rgba(45, 211, 111, 0.4); font-weight: 800; }
+
+
+/* --- DIETA DO DIA --- */
+.container-dieta {
+  padding: 20px; padding-bottom: 100px;
+}
+
+/* --- NOVO HEADER COM PIZZA --- */
+.stats-header-pizza {
+  background: white; padding: 20px; border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: space-around;
+}
+
+.pizza-chart {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  /* O background é definido dinamicamente no TS */
+  transition: background 0.5s ease; 
+}
+
+.chart-center {
+  width: 90px; height: 90px;
+  background: white; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  h2 { margin: 0; font-size: 28px; font-weight: 800; color: #222; }
+  span { font-size: 12px; color: #888; }
+}
+
+.chart-details {
+  text-align: left;
+  .meta-label { font-size: 14px; color: #666; margin-bottom: 10px; }
+  .macro-row { display: flex; gap: 10px; }
+  .macro-item { 
+    display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: #444; 
+    background: #fff3e0; padding: 5px 10px; border-radius: 10px;
+  }
+}
+
+.actions-row {
+  display: flex; justify-content: space-between; margin-bottom: 15px;
+}
+
+.meal-title {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 16px; color: #333;
+  .time { margin-left: auto; font-size: 12px; color: #999; background: #eee; padding: 2px 8px; border-radius: 10px; }
+}
+
+.meal-options {
+  ion-item {
+    --padding-start: 0; --inner-padding-end: 0;
+    h3 { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 5px; }
+    p { 
+      font-size: 12px; color: #666; display: flex; align-items: center; justify-content: space-between;
+      width: 100%;
+    }
+  }
+}
+
+
+/* --- DIA DO LIXO --- */
+.container-lixo {
+  height: 100%; background: #ff5252; color: white;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 40px;
+  /* Importante: z-index alto para cobrir tudo, mas deixar o menu embaixo */
+  position: fixed; top: 0; left: 0; right: 0; bottom: 60px; z-index: 50;
+}
+
+.lixo-content {
+  .giant-icon { font-size: 80px; margin-bottom: 20px; animation: bounce 2s infinite; }
+  h1 { font-size: 32px; font-weight: 900; margin-bottom: 10px; }
+  
+  .fun-cards {
+    display: flex; gap: 10px; justify-content: center; margin: 30px 0;
+    .fun-item { background: rgba(255,255,255,0.2); padding: 10px 15px; border-radius: 20px; font-weight: bold; }
+  }
+
+  .btn-voltar {
+    margin-top: 20px;
+    font-weight: 800;
+    --color: #ff5252; /* Texto vermelho no botão branco */
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* MENU INFERIOR */
+.bottom-tab-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: white; padding: 15px 10px; display: flex; justify-content: space-between;
+  border-top: 1px solid #f0f0f0; 
+  z-index: 999; /* Garante que fique acima de tudo */
+  
+  .tab-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center; color: #ccc; font-size: 10px; gap: 4px;
+    &.active { color: #222; ion-icon { color: var(--ion-color-primary); } }
+    ion-icon { font-size: 24px; }
+  }
+}
