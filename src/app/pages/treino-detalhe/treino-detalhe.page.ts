@@ -37,7 +37,7 @@ export class TreinoDetalhePage implements OnInit {
     'Ectomorfo': {
       'A': {
         foco: 'Força Bruta e Carga',
-        video: 'https://www.youtube.com/embed/geKGIAXdDfk', 
+        video: 'https://www.youtube.com/embed/gm08fEY3zbM', 
         exercicios: [
           { nome: 'Supino Reto com Barra', serie: '4x 6 a 8', dica: 'Carga máxima' },
           { nome: 'Desenvolvimento Militar', serie: '4x 8', dica: 'Cuidado com a lombar' },
@@ -56,7 +56,7 @@ export class TreinoDetalhePage implements OnInit {
       },
       'C': {
         foco: 'Costas Densas',
-        video: 'https://www.youtube.com/embed/S_I5p835KjU', 
+        video: 'https://www.youtube.com/embed/3Hj4wZk97JM', 
         exercicios: [
           { nome: 'Levantamento Terra', serie: '3x 6', dica: 'Rei dos exercícios' },
           { nome: 'Remada Curvada', serie: '3x 8', dica: 'Coluna reta' },
@@ -77,7 +77,7 @@ export class TreinoDetalhePage implements OnInit {
       },
       'B': {
         foco: 'Gasto Calórico Inferior',
-        video: 'https://www.youtube.com/embed/U332iCjX5Hk', 
+        video: 'https://www.youtube.com/embed/sjYpqD2et0I', 
         exercicios: [
           { nome: 'Agachamento com Salto', serie: '4x 15', dica: 'Explosão' },
           { nome: 'Passada (Afundo)', serie: '3x 20', dica: 'Cada perna' },
@@ -117,7 +117,7 @@ export class TreinoDetalhePage implements OnInit {
       },
       'C': {
         foco: 'Dorsais em V',
-        video: 'https://www.youtube.com/embed/XW7K48-A9xI',
+        video: 'https://www.youtube.com/embed/JkVWvEFzzXs',
         exercicios: [
           { nome: 'Puxada Triângulo', serie: '4x 12', dica: 'Traga no peito' },
           { nome: 'Remada Unilateral (Serrote)', serie: '3x 12', dica: 'Apoie no banco' },
